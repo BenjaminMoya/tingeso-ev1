@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Build and Push Docker Image"){
             steps{
-                withDockerRegistry(credentialsId: 'docker-credentials')
+                withDockerRegistry([credentialsId: 'docker-credentials'])
                         sh "docker build --no-cache -t benjaminmoya/creditapp-backend:latest ."
                         sh "docker push benjaminmoya/creditapp-backend:latest"
             }
