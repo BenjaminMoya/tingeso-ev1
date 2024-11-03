@@ -21,9 +21,12 @@ pipeline {
         }
         stage("Build and Push Docker Image"){
             steps{
-                withDockerRegistry([credentialsId: 'docker-credentials'])
+                script {
+                    withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
                         sh "docker build --no-cache -t benjaminmoya/creditapp-backend:latest ."
                         sh "docker push benjaminmoya/creditapp-backend:latest"
+                    }
+                }
             }
         }
     }
