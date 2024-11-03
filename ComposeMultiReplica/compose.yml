@@ -1,6 +1,17 @@
 version: "3.8"
 
 services:
+  database:
+    image: postgres:latest
+    container_name: postgreSQLMulti
+    environment:
+      POSTGRES_USER: tingeso
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: creditadmin-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   # Frontend services
   frontend1:
     image: benjaminmoya/creditapp-frontend:latest
@@ -19,7 +30,7 @@ services:
 
   # Backend services
   backend1:
-    image: tingeso/creditapp-backend:latest
+    image: benjaminmoya/creditapp-backend:latest
     environment:
       - DB_HOST=192.168.1.104
       - DB_PORT=5432
@@ -30,7 +41,7 @@ services:
       - backend-network
 
   backend2:
-    image: tingeso/creditapp-backend:latest
+    image: benjaminmoya/creditapp-backend:latest
     environment:
       - DB_HOST=192.168.1.104
       - DB_PORT=5432
@@ -40,7 +51,7 @@ services:
       - backend-network
 
   backend3:
-    image: tingeso/creditapp-backend:latest
+    image: benjaminmoya/creditapp-backend:latest
     environment:
       - DB_HOST=192.168.1.104
       - DB_PORT=5432
@@ -80,3 +91,6 @@ services:
 networks:
   frontend-network:
   backend-network:
+
+volumes:
+  postgres_data:
