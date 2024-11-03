@@ -1,7 +1,7 @@
-pipeline{
-    agents any
+pipeline {
+    agent any
     tools{
-        maven "maven_3_3_5"
+        maven "maven"
     }
     stages{
         stage("Build .jar"){
