@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    stages{
+        stage("Build Frontend"){
+            steps{
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
+                dir("CreditAdministrationUI"){
+                    sh "npm install"
+                    sh "npm run build"
+                }
+            }
+        }
+        stage("Build and Push Docker Image"){
+            steps{
+                dir("CreditAdministrationUI"){
+                    withDockerRegistry(credentialsId: 'docker-credentials')
+                        sh "docker build --no-cache -t benjaminmoya/creditapp-frontend:latest ."
+                        sh "docker push benjaminmoya/creditapp-frontend:latest"
+                }
+            }
+        }
+    }
+}
