@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Build .jar"){
             steps{
-                checkout scmGit(branches: [[name: '*/master']],extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
+                checkout scmGit(branches: [[name: '*/main']],extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
                 dir("CreditAdministrationApplication"){
                     sh "mvn clean install"
                 }
