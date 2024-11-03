@@ -13,9 +13,11 @@ pipeline{
         stage("Build and Push Docker Image"){
             steps{
                 dir("CreditAdministrationUI"){
-                    withDockerRegistry(credentialsId: 'docker-credentials')
+                    withCredentials([usernamePassword(credentialsId: 'credentialsId', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                        sh "docker login -u $USER -p $PASS"
                         sh "docker build --no-cache -t benjaminmoya/creditapp-frontend:latest ."
                         sh "docker push benjaminmoya/creditapp-frontend:latest"
+                    }
                 }
             }
         }
