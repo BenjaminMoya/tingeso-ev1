@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Build and Push Docker Image"){
             steps {
-                withCredentials([usernamePassword(credentialsId: 'credentialsID', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'credentialsId', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh "docker login -u $USER -p $PASS"
                     sh "docker build --no-cache -t benjaminmoya/creditapp-backend:latest ."
                     sh "docker push benjaminmoya/creditapp-backend:latest"
