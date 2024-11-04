@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
                 withCredentials([sshUserPrivateKey(credentialsId: 'vm-credentials', keyVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
-                sh "ssh -i $SSH_KEY $SSH_USER"
+                sh "ssh -i ${SSH_KEY} ${SSH_USER}"
                 sh "cd MVCompose/"
                 sh "sudo docker stop $(docker ps -aq)"
                 sh "sudo docker-compose pull"
