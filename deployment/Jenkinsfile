@@ -3,7 +3,7 @@ pipeline {
         stages{
             stage('Connect to VM') {
                 steps {
-                // Conexión a la VM mediante SSH
+                    checkout scmGit(branches: [[name: '*/main']],extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
                     sshagent(['ssh-credentials-id']) {
                         sh 'ssh -o StrictHostKeyChecking=no user@20.201.118.55 "echo Connected to VM"'
                     }
