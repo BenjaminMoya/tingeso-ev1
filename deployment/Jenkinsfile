@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+        stages{
+            stage('Connect to VM') {
+                steps {
+                // Conexión a la VM mediante SSH
+                    sshagent(['ssh-credentials-id']) {
+                        sh 'ssh -o StrictHostKeyChecking=no user@20.201.118.55 "echo Connected to VM"'
+                    }
+                }
+            }
+
+            stage('Stop and Remove Containers') {
+                steps {
+                    sshagent(['ssh-credentials-id']) {
+                        sh '''
+                            ssh -o StrictHostKeyChecking=no user@20.201.118.55 << EOF
+                            sudo docker stop $(docker ps -aq)
+                            sudo docker rm $(docker ps -aq)
+                            sudo docker rmi $(docker images -q)        
+                            EOF
+                            '''
+                    }
+                }
+            }
+
+            stage('Pull New Docker Images') {
+                steps {
+                    sshagent(['ssh-credentials-id']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no user@20.201.118.55 << EOF
+                        cd MVCompose/
+                        sudo docker-compose pull
+                        EOF
+                        '''
+                    }
+                }
+            }
+
+            stage('Run Docker Compose') {
+                steps {
+                    sshagent(['ssh-credentials-id']) {
+                        sh '''
+                        ssh -o StrictHostKeyChecking=no user@20.201.118.55 << EOF
+                        cd MVCompose/
+                        sudo docker-compose up
+                        EOF
+                        '''
+                    }
+                }
+            }
+        }
+}
