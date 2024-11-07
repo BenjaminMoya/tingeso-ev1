@@ -56,7 +56,7 @@ export default function Navbar() {
           </IconButton>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Banco Usachin
+          PrestaBanco
           </Typography>
           {!logged && (
             <Button 

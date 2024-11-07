@@ -22,7 +22,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox"
 import savingCapacityService from "../services/savingCapacity.service";
 import fileService from "../services/file.service";
-import { all } from "axios";
 
 const CreditEvaluation = () => {
 
@@ -745,7 +744,7 @@ const CreditEvaluation = () => {
         >
           <h3> Datos del credito </h3>
           <form>
-            <p> Usuario: {creditUserId} </p>
+            <Link to="/user/information">Informacion del usuario</Link>
             <p> Fecha de solicitud: {creditFirmDate} </p>
             {creditType== 1 && (
               <p> Tipo de credito: Primera vivienda </p>

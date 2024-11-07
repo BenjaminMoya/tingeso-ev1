@@ -8,6 +8,7 @@ import CreditSimulation from './components/CreditSimulation';
 import CreditsList from './components/CreditsList';
 import CreditEvaluation from './components/CreditEvaluation';
 import UserCredits from './components/UserCredits';
+import UserInformation from './components/UserInformation';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/credit/application" element={<CreditApplication/>} />
               <Route path="/credit/list" element={<CreditsList/>} />
               <Route path="/credit/evaluation" element={<CreditEvaluation/>} />
+              <Route path="/user/information" element={<UserInformation/>}/>
               <Route path="/user/credits" element={<UserCredits/>} />
             </Routes>
           </div>
