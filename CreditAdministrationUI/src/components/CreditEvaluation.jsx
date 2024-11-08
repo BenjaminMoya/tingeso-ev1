@@ -745,7 +745,6 @@ const CreditEvaluation = () => {
           <h3> Datos del credito </h3>
           <form>
             <Link to="/user/information">Informacion del usuario</Link>
-            <p> Fecha de solicitud: {creditFirmDate} </p>
             {creditType== 1 && (
               <p> Tipo de credito: Primera vivienda </p>
             )}

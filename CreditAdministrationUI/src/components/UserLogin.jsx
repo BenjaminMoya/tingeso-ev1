@@ -34,7 +34,7 @@ const UserLogin = () => {
     }
 
     if(userAge < 18 || userAge > 110){
-      alert("Edad invalida");
+      alert("Tiene que ser mayor a 18 años y menor a 110 años");
       return;
     }
 
