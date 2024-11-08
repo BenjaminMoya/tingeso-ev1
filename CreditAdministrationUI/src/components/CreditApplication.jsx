@@ -73,12 +73,37 @@ const CreditApplication = () => {
       alert("Los campos monto, precio de la propiedad y plazo deben ser numeros enteros.");
       return;
     }
-    
+
+    if (selectedFile1 || selectedFile2 ||selectedFile3 || selectedFile4) {
+      const fileType = selectedFile1.type;
+      if (fileType !== "application/pdf") {
+        alert("Por favor, sube un archivo en formato PDF.");
+        return; 
+      }
+    }
+    const fileType1 = selectedFile1.type;
+    const fileType2 = selectedFile2.type;
+    const fileType3 = selectedFile3.type;
+    if (fileType1 !== "application/pdf" || fileType2 !== "application/pdf" || fileType3 !== "application/pdf") {
+      alert("Por favor, sube un archivo en formato PDF.");
+      return; 
+    }
+
     if(creditType == 1 && selectedFile1 && selectedFile2 && selectedFile3){
       setMaxAmount(creditRequestedAmount*0,8);
     } else if(creditType == 2 && selectedFile1 && selectedFile2 && selectedFile3 && selectedFile4){
+      const fileType4 = selectedFile4.type;
+      if (fileType4 !== "application/pdf") {
+        alert("Por favor, sube un archivo en formato PDF.");
+        return;
+      }
       setMaxAmount(creditRequestedAmount*0,7);
     } else if(creditType == 3 && selectedFile1 && selectedFile2 && selectedFile3 && selectedFile4){
+      const fileType4 = selectedFile4.type;
+      if (fileType4 !== "application/pdf") {
+        alert("Por favor, sube un archivo en formato PDF.");
+        return;
+      }
       setMaxAmount(creditRequestedAmount*0,6);
     } else if(creditType == 4 && selectedFile1 && selectedFile2 && selectedFile3){
       setMaxAmount(creditRequestedAmount*0,5);

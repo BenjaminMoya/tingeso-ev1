@@ -775,13 +775,13 @@ const CreditEvaluation = () => {
                 <Typography>El pago del credito se extiende a mas de 75 años de edad</Typography>
               </Box>
             )}
-            {relationCI && (
+            {relationCI != 0 && (
               <Box display="flex" alignItems="row" mb={1}>
                 <CheckCircleOutlineSharpIcon style={{ color: 'green', marginRight: 8 }} />
                 <Typography>Relacion CI menor a 35 %</Typography>
               </Box>
             )}
-            {!relationCI && (
+            { relationCI == 0 && (
               <Box display="flex" alignItems="row" mb={1}>
                 <CancelSharpIcon style={{ color: 'red', marginRight: 8 }} />
                 <Typography>Relacion CI mayor a 35%</Typography>
@@ -799,13 +799,13 @@ const CreditEvaluation = () => {
                 <Typography>Mas de 1 año de antiguedad laboral</Typography>
               </Box>
             )}
-            { relationDI && (
+            { relationDI != 0 && (
               <Box display="flex" alignItems="row" mb={1}>
                 <CheckCircleOutlineSharpIcon style={{ color: 'green', marginRight: 8 }} />
                 <Typography>Relacion DI: Deudas menores que el 50% del ingreso mensual</Typography>
               </Box>
             )}
-            { !relationDI && (
+            { relationDI == 0 && (
               <Box display="flex" alignItems="row" mb={1}>
                 <CancelSharpIcon style={{ color: 'red', marginRight: 8 }} />
                 <Typography>Relacion DI: Deudas mayores que el 50% del ingreso mensual</Typography>
