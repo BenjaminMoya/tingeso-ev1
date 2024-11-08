@@ -63,7 +63,7 @@ export default function Sidemenu({ open, toggleDrawer }) {
           <ListItemIcon>
             <Calculate />
           </ListItemIcon>
-          <ListItemText primary="Simulacion de credito" />
+          <ListItemText primary="Simular credito" />
         </ListItemButton>
 
         <ListItemButton onClick={() => navigate("/credit/application")}>
