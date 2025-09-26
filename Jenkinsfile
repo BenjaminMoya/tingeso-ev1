@@ -1,21 +1,14 @@
 pipeline {
     agent any
     tools{
-        maven "maven"
+        gradle "gradle"
     }
     stages{
         stage("Build .jar"){
             steps{
                 checkout scmGit(branches: [[name: '*/main']],extensions: [], userRemoteConfigs: [[url: 'https://github.com/BenjaminMoya/tingeso-ev1']])
                 dir("CreditAdministrationApplication"){
-                    sh "mvn clean install"
-                }
-            }
-        }
-        stage("Unit test"){
-            steps{
-                dir("CreditAdministrationApplication"){
-                    sh "mvn test"
+                    sh "gradle clean build"
                 }
             }
         }
